@@ -1,0 +1,176 @@
+---
+title: "Data Storytelling"
+author: "Ted Laderas"
+date: " `r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+library(here)
+library(readr)
+library(tidyverse)
+cvd_patient <- readr::read_csv(here("data/cvd_patient.csv"))
+```
+
+```{r xaringan-themer, include = FALSE}
+library(xaringanthemer)
+mono_light(
+  base_color = "#1c5253",
+  header_font_google = google_font("Josefin Sans"),
+  text_font_google   = google_font("Montserrat", "300", "300i"),
+  code_font_google   = google_font("Droid Mono")
+)
+```
+
+# Overview
+
+- What is data storytelling?
+- How can we communicate effectively?
+- Tips and tricks for emphasizing your message
+
+---
+# Exploratory versus Explanatory
+
+---
+# Three Questions
+
+--
+- For whom?
+--
+
+- What is your call to action?
+--
+
+- How will you communicate it using the available data?
+
+---
+# Who is your audience?
+
+- What are their values?
+- What are their strengths?
+- How should you tailor your message?
+
+---
+# What is your call to action?
+
+- What action do you want your audience to take?
+
+---
+# What data do you need to tell your story?
+
+- What datasets/tables/metrics?
+- Should you subset the data
+- How should you present it visually?
+
+---
+
+# Storyboarding
+
+Activity: Figure out what your 3 minute story and call to action is
+
+---
+# Types of visuals
+
+- Numbers
+- Barplots
+- Lineplots
+- Heatmaps
+
+---
+# Preattentive Attributes
+
+Ways to highlight properties of graphs even before people are even "paying attention".
+
+- color
+- contrast
+
+---
+# Reduce Clutter
+
+Reduce the cognitive load it takes to process a graph!
+
+Show only what you need to show.
+
+Use `theme()` and `element_blank()` to remove different parts of the data.
+
+---
+# Removing Legends
+
+`theme(legend.position="none")` is your friend.
+
+---
+
+# Ways to highlight parts of a bar graph
+
+`scale_fill_manual()` is your friend with categorical data. Map your categories to colors manually, only highlight the categories you want to emphasize.
+
+```{r}
+out_plot <- cvd_patient %>% 
+  mutate(race=factor(race)) %>% 
+  group_by(race) %>% summarize(count=n()) %>% 
+  mutate(race=fct_reorder(race, count)) %>%
+ggplot(aes(x=race, y=count, fill=race)) + geom_col() + geom_text(aes(label=race, y=count+1000)) + scale_fill_manual(values=c("Black/AfAm"="blue", "AmInd"="grey", "White"="grey", "Asian/PI"="grey")) + theme(legend.position = "none", axis.text.x = element_blank(), axis.title.y = element_blank()) + ggtitle("African Americans are 3rd in the demographics of the data") 
+
+```
+---
+# Resulting Graph
+
+```{r}
+out_plot
+```
+---
+
+# Summarizing by race and cardiovascular disease
+
+```{r}
+cvd_race_count <- cvd_patient %>% 
+  mutate(race=factor(race)) %>% 
+  group_by(race, cvd) %>% summarize(count=n())
+
+cvd_race_count
+```
+
+---
+# Decluttering a heatmap using `theme()`
+
+```{r}
+cvd_race_count %>% ggplot(aes(x=cvd, y=race, fill=count)) + geom_tile(color="black") +
+  scale_fill_gradient(low="white", high="red") + geom_text(aes(label=count)) + theme_minimal() + theme(legend.position = "none", axis.title.x = element_blank(), axis.title.y = element_blank())
+
+```
+---
+# Subsetting using filter
+
+```{r}
+cvd_race_count %>% filter(race=="Black/AfAm") %>% ggplot(aes(x=race, y=count, fill=cvd)) + geom_bar(stat="identity", position = "fill", color="black") + theme_minimal()
+
+```
+
+
+---
+# Annotating a graph using `annotate`:
+
+
+---
+
+# Use Plain Language (Allison Stiter)
+
+| Instead of...                | Try...                                                                                         |
+|---------------------------|---------------------------------------------------------------------------------------------|
+| Statistically Significant | "If we did this experiment again, it  would be unlikely to come up with a different result" |
+| Null Result               | "We haven't gotten enough data to answer your question. More data may help."                |
+| Confidence Interval       | "We're Pretty sure the true answer is between this and that."                               |
+| p-value                   | Maybe skip talking about p-values at all?                                                   |
+
+---
+
+# Be a Learner and Educator
+
