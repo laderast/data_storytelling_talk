@@ -39,8 +39,33 @@ mono_light(
 ---
 # Exploratory versus Explanatory
 
+- Exploratory analysis: exploring and understanding the data, conducting the analysis
+- Explanatory analysis: explaining your findings from your analysis in a coherent narrative that leads to a call to action
+
 ---
-# Three Questions
+# Seriously, no one cares
+
+- How many graphs you had to generate to understand the data!
+- You need to pare things down!
+
+---
+# Use Plain Language (Allison Stiter)
+
+| Instead of...                | Try...                                                                                         |
+|---------------------------|---------------------------------------------------------------------------------------------|
+| Statistically Significant | "If we did this experiment again, it  would be unlikely to come up with a different result" |
+| Null Result               | "We haven't gotten enough data to answer your question. More data may help."                |
+| Confidence Interval       | "We're Pretty sure the true answer is between this and that."                               |
+| p-value                   | Maybe skip talking about p-values at all?                                                   |
+
+---
+
+# Be a Learner and Educator
+
+
+
+---
+# Three Questions before you even make slides and figures
 
 --
 - For whom?
@@ -51,6 +76,7 @@ mono_light(
 
 - How will you communicate it using the available data?
 
+.footnote[Cole Nussbaumer Naflic, [Storytelling with Data](http://www.storytellingwithdata.com/books)]
 ---
 # Who is your audience?
 
@@ -158,19 +184,4 @@ cvd_race_count %>% filter(race=="Black/AfAm") %>% ggplot(aes(x=race, y=count, fi
 ---
 # Annotating a graph using `annotate`:
 
-
----
-
-# Use Plain Language (Allison Stiter)
-
-| Instead of...                | Try...                                                                                         |
-|---------------------------|---------------------------------------------------------------------------------------------|
-| Statistically Significant | "If we did this experiment again, it  would be unlikely to come up with a different result" |
-| Null Result               | "We haven't gotten enough data to answer your question. More data may help."                |
-| Confidence Interval       | "We're Pretty sure the true answer is between this and that."                               |
-| p-value                   | Maybe skip talking about p-values at all?                                                   |
-
----
-
-# Be a Learner and Educator
 
