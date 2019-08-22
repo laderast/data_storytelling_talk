@@ -46,8 +46,10 @@ class: center, middle
 ---
 # Motivation: Exploratory versus Explanatory
 
-- Exploratory analysis: exploring and understanding the data, conducting the analysis
-- Explanatory analysis: explaining your findings from your analysis in a coherent narrative that leads to a call to action
+- **Exploratory analysis**: 
+    - exploring and understanding the data, conducting the analysis
+- **Explanatory analysis**: 
+    - explaining your findings from your analysis in a coherent narrative that leads to a call to action
 
 ---
 # You are not your audience
@@ -133,11 +135,15 @@ class: center, middle
 ---
 # Just use the number
 
+.pull-left[
 Tables do require mental processing. It may be worth it to just use the number as the visual.
+]
 
+.pull-right[
 ```{r echo=FALSE}
 knitr::include_graphics("img/number.png")
 ```
+]
 
 .footnote[Storytelling with Data]
 
@@ -161,6 +167,11 @@ May be better than straight tables! Highlight differences using color.
 knitr::include_graphics("img/heatmap.png")
 ```
 ]
+---
+# `geom_count()`
+
+We'll look at an example a little later.
+
 ---
 class: center, middle
 # Highlighting your message
