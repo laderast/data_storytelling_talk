@@ -56,7 +56,7 @@ class: center, middle
 - Adjust your metrics
 
 ---
-# Use Plain Language (Allison Stiter)
+# Use Plain Language (Allison Sliter)
 
 | Instead of...                | Try...                                                                                         |
 |---------------------------|---------------------------------------------------------------------------------------------|
@@ -132,17 +132,41 @@ class: center, middle
 ---
 # Just use the number
 
-Tables do require processing. It may be worth it to just use the number as the visual.
+Tables do require mental processing. It may be worth it to just use the number as the visual.
+
+
+```r
+knitr::include_graphics("img/number.png")
+```
+
+&lt;img src="img/number.png" width="755" /&gt;
+
+.footnote[Storytelling with Data]
 
 ---
 # Barplots
 
+Stacked versus unstacked.
 
+
+```r
+knitr::include_graphics("img/barplots.png")
+```
+
+&lt;img src="img/barplots.png" width="600" /&gt;
+
+.footnote[Storytelling with Data]
 ---
 # Heatmaps
 
-May be better than straight tables!
+May be better than straight tables! Highlight differences using color.
 
+
+```r
+knitr::include_graphics("img/heatmap.png")
+```
+
+&lt;img src="img/heatmap.png" width="731" /&gt;
 ---
 class: center, middle
 # Highlighting your message
@@ -159,7 +183,7 @@ Focus on three techniques
 ---
 # Preattentive Attributes
 
-Ways to highlight properties of graphs even before people are even "paying attention".
+Ways to highlight properties of graphs even before people are even "paying attention", or consciously processing the graph:
 
 - color
 - contrast
@@ -180,21 +204,8 @@ cvd_race_count &lt;- cvd_patient %&gt;%
 ---
 # CVD Race Count
 
-
-```
-## # A tibble: 8 x 3
-## # Groups:   race [4]
-##   race       cvd   count
-##   &lt;fct&gt;      &lt;chr&gt; &lt;int&gt;
-## 1 AmInd      N       127
-## 2 AmInd      Y        43
-## 3 Asian/PI   N      4657
-## 4 Asian/PI   Y      1732
-## 5 Black/AfAm N      1778
-## 6 Black/AfAm Y       268
-## 7 White      N     22004
-## 8 White      Y      4991
-```
+<div id="htmlwidget-27a8dba133e02c95f293" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-27a8dba133e02c95f293">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8"],["AmInd","AmInd","Asian/PI","Asian/PI","Black/AfAm","Black/AfAm","White","White"],["N","Y","N","Y","N","Y","N","Y"],[127,43,4657,1732,1778,268,22004,4991]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>race<\/th>\n      <th>cvd<\/th>\n      <th>count<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":3},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 
 ---
 # Context: Ways to highlight parts of a graph
@@ -220,8 +231,8 @@ fullset &lt;- cvd_patient %&gt;%
 
 There's a new column called `highlight`:
 
-<div id="htmlwidget-e430dc6d462f04f1f7a8" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-e430dc6d462f04f1f7a8">{"x":{"filter":"none","data":[["1","2","3","4"],["AmInd","Asian/PI","Black/AfAm","White"],[43,1732,268,4991],["N","N","Y","N"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>race<\/th>\n      <th>count<\/th>\n      <th>highlight<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":2},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-73d1f6ad7f1f191d7c3d" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-73d1f6ad7f1f191d7c3d">{"x":{"filter":"none","data":[["1","2","3","4"],["AmInd","Asian/PI","Black/AfAm","White"],[43,1732,268,4991],["N","N","Y","N"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>race<\/th>\n      <th>count<\/th>\n      <th>highlight<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":2},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 
 ---
 ## Highlighting the data
@@ -244,7 +255,7 @@ out_plot &lt;- ggplot(data=fullset, aes(x=race, y=count, fill=highlight)) +
 ---
 # Resulting Graph
 
-![](index_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
 
 ---
 # Reduce Clutter
@@ -279,7 +290,7 @@ heat_map &lt;- cvd_race_count %&gt;%
 ---
 # Resulting Plot
 
-![](index_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
 
 ---
 # Decluttering a heatmap using `theme()`
@@ -293,7 +304,7 @@ heat_map &lt;- cvd_race_count %&gt;%
   geom_tile(color="black") +
   scale_fill_gradient(low="white", high="lightblue") + 
 * geom_text(aes(label=count), size=10) +
-  theme_minimal() + 
+* theme_minimal() +
   #remove clutter
 * theme(legend.position = "none",
 *       text = element_text(size=20),
@@ -306,7 +317,7 @@ heat_map &lt;- cvd_race_count %&gt;%
 ---
 # Resulting Graph
 
-![](index_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
 
 ---
 # Context: Make your categories more understandable
@@ -358,7 +369,7 @@ out_plot &lt;- lace_table %&gt;%
 ---
 # Resulting Plot
 
-![](index_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/unnamed-chunk-16-1.png)&lt;!-- --&gt;
 
 ---
 # Making things a little less cluttered
@@ -379,7 +390,7 @@ out_plot &lt;- lace_table %&gt;%
 ---
 # Resulting Plot
 
-![](index_files/figure-html/unnamed-chunk-15-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/unnamed-chunk-18-1.png)&lt;!-- --&gt;
 
 ---
 # Adding Annotation
@@ -389,6 +400,7 @@ out_plot &lt;- lace_table %&gt;%
 lace_table &lt;- read.delim("data/analytic-table-LACE.txt")
 
 out_plot &lt;- lace_table %&gt;% 
+  filter(Readmit30 == 1) %&gt;%
   mutate(lace7 = ifelse(LACE &gt; 7, "Y", "N")) %&gt;% 
   ggplot(aes(y=as.factor(Admit_source), x=LACE, color=lace7)) + 
   geom_count() + scale_color_manual(values=c("Y"="orange", "N"="grey")) +
@@ -397,7 +409,8 @@ out_plot &lt;- lace_table %&gt;%
   theme(legend.position = "none", axis.title.y = element_blank()) +  
 * annotate("text",x = 5, y= 2.3, label="Low Risk") +
 * annotate("text", x=10, y=2.3, label = "High Risk" ) +
-* scale_size_area(max_size = 10)
+* scale_size_area(max_size = 10) +
+  ggtitle("LACE Cutoff of 7 targets Emergency Room Readmits")
 ```
 
 ---
@@ -408,7 +421,7 @@ out_plot &lt;- lace_table %&gt;%
 out_plot
 ```
 
-![](index_files/figure-html/unnamed-chunk-17-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/unnamed-chunk-20-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -438,7 +451,7 @@ out_plot &lt;- cvd_race_count %&gt;%
 ---
 # The Plot
 
-![](index_files/figure-html/unnamed-chunk-19-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/unnamed-chunk-22-1.png)&lt;!-- --&gt;
 
 ---
 # `ggplot2` flipbook

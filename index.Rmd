@@ -56,7 +56,7 @@ class: center, middle
 - Adjust your metrics
 
 ---
-# Use Plain Language (Allison Stiter)
+# Use Plain Language (Allison Sliter)
 
 | Instead of...                | Try...                                                                                         |
 |---------------------------|---------------------------------------------------------------------------------------------|
@@ -132,17 +132,32 @@ class: center, middle
 ---
 # Just use the number
 
-Tables do require processing. It may be worth it to just use the number as the visual.
+Tables do require mental processing. It may be worth it to just use the number as the visual.
+
+```{r}
+knitr::include_graphics("img/number.png")
+```
+
+.footnote[Storytelling with Data]
 
 ---
 # Barplots
 
+Stacked versus unstacked.
 
+```{r}
+knitr::include_graphics("img/barplots.png")
+```
+
+.footnote[Storytelling with Data]
 ---
 # Heatmaps
 
-May be better than straight tables!
+May be better than straight tables! Highlight differences using color.
 
+```{r}
+knitr::include_graphics("img/heatmap.png")
+```
 ---
 class: center, middle
 # Highlighting your message
@@ -159,7 +174,7 @@ Focus on three techniques
 ---
 # Preattentive Attributes
 
-Ways to highlight properties of graphs even before people are even "paying attention".
+Ways to highlight properties of graphs even before people are even "paying attention", or consciously processing the graph:
 
 - color
 - contrast
@@ -180,7 +195,7 @@ cvd_race_count <- cvd_patient %>%
 # CVD Race Count
 
 ```{r echo=FALSE}
-cvd_race_count
+DT::datatable(cvd_race_count)
 ```
 
 ---
@@ -282,7 +297,7 @@ heat_map <- cvd_race_count %>%
   geom_tile(color="black") +
   scale_fill_gradient(low="white", high="lightblue") + 
   geom_text(aes(label=count), size=10) + #<< 
-  theme_minimal() + 
+  theme_minimal() + #<<
   #remove clutter
   theme(legend.position = "none", #<<
         text = element_text(size=20), #<<
@@ -305,13 +320,15 @@ heat_map
 Use of `case_when()` to recode categorical data:
 
 ```{r}
-cvd_patient %>% 
+recoded_data <- cvd_patient %>% 
   mutate(smoking = case_when(smoking == "Y" ~ "smoker", #<<
                              smoking == "N" ~ "non-smoker")) %>% #<<
   mutate(cvd= case_when(cvd == "N" ~ "CVD",
                         cvd == "Y" ~ "None")) %>%
   select(smoking, cvd) %>%
   table()
+
+DT::datatable(recoded_data)
 ```
 
 ---
@@ -332,6 +349,7 @@ Think of a title for this plot!
 lace_table <- read.delim("data/analytic-table-LACE.txt")
 
 out_plot <- lace_table %>% 
+  filter(Readmit30 == 1) %>%
   mutate(lace7 = ifelse(LACE > 7, "Y", "N")) %>% #<<
   ggplot(aes(y=as.factor(Admit_source), x=LACE, color=lace7)) +
   geom_count() + 
@@ -351,6 +369,7 @@ out_plot
 lace_table <- read.delim("data/analytic-table-LACE.txt")
 
 out_plot <- lace_table %>% 
+  filter(Readmit30 == 1) %>%
   mutate(lace7 = ifelse(LACE > 7, "Y", "N")) %>% 
   ggplot(aes(y=as.factor(Admit_source), x=LACE, color=lace7)) + 
   geom_count() + scale_color_manual(values=c("Y"="orange", "N"="grey")) +
@@ -373,6 +392,7 @@ out_plot
 lace_table <- read.delim("data/analytic-table-LACE.txt")
 
 out_plot <- lace_table %>% 
+  filter(Readmit30 == 1) %>%
   mutate(lace7 = ifelse(LACE > 7, "Y", "N")) %>% 
   ggplot(aes(y=as.factor(Admit_source), x=LACE, color=lace7)) + 
   geom_count() + scale_color_manual(values=c("Y"="orange", "N"="grey")) +
@@ -381,7 +401,8 @@ out_plot <- lace_table %>%
   theme(legend.position = "none", axis.title.y = element_blank()) +  
   annotate("text",x = 5, y= 2.3, label="Low Risk") + #<<
   annotate("text", x=10, y=2.3, label = "High Risk" ) + #<<
-  scale_size_area(max_size = 10) #<<
+  scale_size_area(max_size = 10) + #<<
+  ggtitle("LACE Cutoff of 7 targets Emergency Room Readmits")
 ```
 
 ---
