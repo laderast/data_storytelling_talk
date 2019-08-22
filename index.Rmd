@@ -70,6 +70,8 @@ class: center, middle
 | Null Result               | "We haven't gotten enough data to answer your question. More data may help."                |
 | Confidence Interval       | "We're Pretty sure the true answer is between this and that."                               |
 | p-value                   | Maybe skip talking about p-values at all?                                                   |
+
+.footnote[https://www.plainlanguage.gov/]
 ---
 class: center, middle
 # Know Your Audience and Build Your Story
