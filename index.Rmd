@@ -150,9 +150,11 @@ knitr::include_graphics("img/number.png")
 ---
 # Barplots
 
+.pull-right[
 ```{r echo=FALSE}
 knitr::include_graphics("img/barplots.png")
 ```
+]
 
 .footnote[Storytelling with Data]
 ---

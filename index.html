@@ -148,7 +148,9 @@ Tables do require mental processing. It may be worth it to just use the number a
 ---
 # Barplots
 
+.pull-right[
 &lt;img src="img/barplots.png" width="600" /&gt;
+]
 
 .footnote[Storytelling with Data]
 ---
@@ -203,8 +205,8 @@ cvd_race_count &lt;- cvd_patient %&gt;%
 ---
 # CVD Race Count
 
-<div id="htmlwidget-16d4bebeddfbbe5eed4e" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-16d4bebeddfbbe5eed4e">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8"],["AmInd","AmInd","Asian/PI","Asian/PI","Black/AfAm","Black/AfAm","White","White"],["N","Y","N","Y","N","Y","N","Y"],[127,43,4657,1732,1778,268,22004,4991]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>race<\/th>\n      <th>cvd<\/th>\n      <th>count<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":3},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-e00c11b859fe72aed91b" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e00c11b859fe72aed91b">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8"],["AmInd","AmInd","Asian/PI","Asian/PI","Black/AfAm","Black/AfAm","White","White"],["N","Y","N","Y","N","Y","N","Y"],[127,43,4657,1732,1778,268,22004,4991]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>race<\/th>\n      <th>cvd<\/th>\n      <th>count<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":3},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 
 ---
 # Context: Ways to highlight parts of a graph
@@ -230,8 +232,8 @@ fullset &lt;- cvd_patient %&gt;%
 
 There's a new column called `highlight`:
 
-<div id="htmlwidget-8f4a4f862774ff21cc1e" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-8f4a4f862774ff21cc1e">{"x":{"filter":"none","data":[["1","2","3","4"],["AmInd","Asian/PI","Black/AfAm","White"],[43,1732,268,4991],["N","N","Y","N"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>race<\/th>\n      <th>count<\/th>\n      <th>highlight<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":2},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-daec2fc930e0523d78b9" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-daec2fc930e0523d78b9">{"x":{"filter":"none","data":[["1","2","3","4"],["AmInd","Asian/PI","Black/AfAm","White"],[43,1732,268,4991],["N","N","Y","N"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>race<\/th>\n      <th>count<\/th>\n      <th>highlight<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":2},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 
 ---
 ## Highlighting the data
@@ -336,8 +338,8 @@ recoded_data &lt;- cvd_patient %&gt;%
 DT::datatable(recoded_data)
 ```
 
-<div id="htmlwidget-f66a537757175c0928b1" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-f66a537757175c0928b1">{"x":{"filter":"none","data":[["non-smoker","smoker","non-smoker","smoker"],["non-smoker","smoker","non-smoker","smoker"],["CVD","CVD","None","None"],[25653,2913,5620,1414]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>smoking<\/th>\n      <th>cvd<\/th>\n      <th>Freq<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,2]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-907d749347a80a98ddac" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-907d749347a80a98ddac">{"x":{"filter":"none","data":[["non-smoker","smoker","non-smoker","smoker"],["non-smoker","smoker","non-smoker","smoker"],["CVD","CVD","None","None"],[25653,2913,5620,1414]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>smoking<\/th>\n      <th>cvd<\/th>\n      <th>Freq<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,2]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 
 ---
 # Context: Annotating a graph using `annotate`:
