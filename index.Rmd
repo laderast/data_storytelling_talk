@@ -46,11 +46,14 @@ class: center, middle
 ---
 # Motivation: Exploratory versus Explanatory
 
+.pull-left[
 **Exploratory analysis**: 
   - exploring and understanding the data, conducting the analysis
+]
+.pull-right[
 **Explanatory analysis**: 
   - explaining your findings from your analysis in a coherent narrative that leads to a call to action
-
+]
 ---
 # You are not your audience
 
