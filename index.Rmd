@@ -212,6 +212,12 @@ knitr::include_graphics("img/threes.png")
 
 .footnote[Storytelling with Data]
 ---
+# Highlighting data
+
+We've counted the number of cases in the `cvd_patient` dataset by `race`.
+
+We want to highlight the counts of African Americans in our cohort.
+---
 # Context: Ways to highlight parts of a graph
 
 `scale_fill_manual()` is your friend with categorical data. Map your categories to colors manually, only highlight the categories you want to emphasize.

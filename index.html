@@ -204,6 +204,12 @@ Ways to highlight properties of graphs even before people are even "paying atten
 
 .footnote[Storytelling with Data]
 ---
+# Highlighting data
+
+We've counted the number of cases in the `cvd_patient` dataset by `race`.
+
+We want to highlight the counts of African Americans in our cohort.
+---
 # Context: Ways to highlight parts of a graph
 
 `scale_fill_manual()` is your friend with categorical data. Map your categories to colors manually, only highlight the categories you want to emphasize.
@@ -227,8 +233,8 @@ fullset &lt;- cvd_patient %&gt;%
 
 There's a new column called `highlight`:
 
-<div id="htmlwidget-d9ec781582c94e6587dd" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-d9ec781582c94e6587dd">{"x":{"filter":"none","data":[["1","2","3","4"],["AmInd","Asian/PI","Black/AfAm","White"],[43,1732,268,4991],["N","N","Y","N"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>race<\/th>\n      <th>count<\/th>\n      <th>highlight<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":2},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-a31b3849b19fede2adcf" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a31b3849b19fede2adcf">{"x":{"filter":"none","data":[["1","2","3","4"],["AmInd","Asian/PI","Black/AfAm","White"],[43,1732,268,4991],["N","N","Y","N"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>race<\/th>\n      <th>count<\/th>\n      <th>highlight<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":2},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 
 ---
 ## Highlighting the data
@@ -287,8 +293,8 @@ cvd_race_count &lt;- cvd_patient %&gt;%
 ---
 # CVD Race Count
 
-<div id="htmlwidget-6d6558efcfc652883fbc" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-6d6558efcfc652883fbc">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8"],["AmInd","AmInd","Asian/PI","Asian/PI","Black/AfAm","Black/AfAm","White","White"],["N","Y","N","Y","N","Y","N","Y"],[127,43,4657,1732,1778,268,22004,4991]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>race<\/th>\n      <th>cvd<\/th>\n      <th>count<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":3},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-168e08d91924c31564a2" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-168e08d91924c31564a2">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8"],["AmInd","AmInd","Asian/PI","Asian/PI","Black/AfAm","Black/AfAm","White","White"],["N","Y","N","Y","N","Y","N","Y"],[127,43,4657,1732,1778,268,22004,4991]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>race<\/th>\n      <th>cvd<\/th>\n      <th>count<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":3},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 
 
 
