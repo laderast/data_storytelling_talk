@@ -46,10 +46,10 @@ class: center, middle
 ---
 # Motivation: Exploratory versus Explanatory
 
-- **Exploratory analysis**: 
-    - exploring and understanding the data, conducting the analysis
-- **Explanatory analysis**: 
-    - explaining your findings from your analysis in a coherent narrative that leads to a call to action
+**Exploratory analysis**: 
+  - exploring and understanding the data, conducting the analysis
+**Explanatory analysis**: 
+  - explaining your findings from your analysis in a coherent narrative that leads to a call to action
 
 ---
 # You are not your audience
@@ -169,6 +169,8 @@ May be better than straight tables! Highlight differences using color.
 knitr::include_graphics("img/heatmap.png")
 ```
 ]
+
+.footnote[Storytelling with Data]
 ---
 # `geom_count()`
 
@@ -190,30 +192,20 @@ Focus on three techniques
 ---
 # Preattentive Attributes
 
+.pull-left[
 Ways to highlight properties of graphs even before people are even "paying attention", or consciously processing the graph:
 
 - color
-- contrast
+- contrast]
 
----
-# Let's summarize the data
-
-Summarizing by race and cardiovascular disease
-
-Using `group_by()/summarize()`:
-
-```{r}
-cvd_race_count <- cvd_patient %>% 
-  mutate(race=factor(race)) %>% 
-  group_by(race, cvd) %>% summarize(count=n()) #<<
-```
----
-# CVD Race Count
-
+.pull-right[
 ```{r echo=FALSE}
-DT::datatable(cvd_race_count)
+knitr::include_graphics("img/threes.png")
 ```
 
+]
+
+.footnote[Storytelling with Data]
 ---
 # Context: Ways to highlight parts of a graph
 
@@ -285,6 +277,27 @@ Lots of prebuilt themes are really useful!
 https://ggplot2.tidyverse.org/reference/theme.html
 
 ---
+# Let's summarize the data
+
+Summarizing by race and cardiovascular disease
+
+Using `group_by()/summarize()`:
+
+```{r}
+cvd_race_count <- cvd_patient %>% 
+  mutate(race=factor(race)) %>% 
+  group_by(race, cvd) %>% summarize(count=n()) #<<
+```
+---
+# CVD Race Count
+
+```{r echo=FALSE}
+DT::datatable(cvd_race_count)
+```
+
+
+
+---
 # Heatmap Example
 
 ```{r}
@@ -336,15 +349,13 @@ heat_map
 Use of `case_when()` to recode categorical data:
 
 ```{r}
-recoded_data <- cvd_patient %>% 
+cvd_patient %>% 
   mutate(smoking = case_when(smoking == "Y" ~ "smoker", #<<
                              smoking == "N" ~ "non-smoker")) %>% #<<
   mutate(cvd= case_when(cvd == "N" ~ "CVD",
                         cvd == "Y" ~ "None")) %>%
   select(smoking, cvd) %>%
   table()
-
-DT::datatable(recoded_data)
 ```
 
 ---
@@ -388,7 +399,8 @@ out_plot <- lace_table %>%
   filter(Readmit30 == 1) %>%
   mutate(lace7 = ifelse(LACE > 7, "Y", "N")) %>% 
   ggplot(aes(y=as.factor(Admit_source), x=LACE, color=lace7)) + 
-  geom_count() + scale_color_manual(values=c("Y"="orange", "N"="grey")) +
+  geom_count() + 
+  scale_color_manual(values=c("Y"="orange", "N"="grey")) +
   theme_minimal() + #<<
   geom_vline(xintercept=8, lty=3) + #<<
   theme(legend.position = "none", axis.title.y = element_blank()) #<<
@@ -410,21 +422,24 @@ lace_table <- read.delim("data/analytic-table-LACE.txt")
 out_plot <- lace_table %>% 
   filter(Readmit30 == 1) %>%
   mutate(lace7 = ifelse(LACE > 7, "Y", "N")) %>% 
+
   ggplot(aes(y=as.factor(Admit_source), x=LACE, color=lace7)) + 
-  geom_count() + scale_color_manual(values=c("Y"="orange", "N"="grey")) +
-  theme_minimal() + 
+  geom_count() + 
+  scale_color_manual(values=c("Y"="orange", "N"="grey")) +
+  theme_minimal() + #<<
+  theme(text =element_text(size=16)) + #<<
   geom_vline(xintercept=8, lty=3) +
   theme(legend.position = "none", axis.title.y = element_blank()) +  
   annotate("text",x = 5, y= 2.3, label="Low Risk") + #<<
   annotate("text", x=10, y=2.3, label = "High Risk" ) + #<<
   scale_size_area(max_size = 10) + #<<
-  ggtitle("LACE Cutoff of 7 targets Emergency Room Readmits")
+  ggtitle("LACE Cutoff of 7 targets\n Emergency Room Readmits")
 ```
 
 ---
 # The Resulting Plot
 
-```{r}
+```{r echo=FALSE}
 out_plot
 ```
 
@@ -488,6 +503,7 @@ https://evamaerey.github.io/ggplot_flipbook/ggplot_flipbook_xaringan.html
 
 - Source for these slides: https://github.com/laderast/data_storytelling_talk
 - [Allison Sliter: Data Presentation for Everyone](https://ww2.amstat.org/meetings/sdss/2019/onlineprogram/AbstractDetails.cfm?AbstractID=306642)
-- [ggplot2 flipbook](https://evamaerey.github.io/ggplot_flipbook/ggplot_flipbook_xaringan.html)
+- [`ggplot2` flipbook](https://evamaerey.github.io/ggplot_flipbook/ggplot_flipbook_xaringan.html)
+- [Alison Hill: Take a Sad Plot and Make it Better](https://alison.rbind.io/talk/2018-ohsu-sad-plot-better/)
 - [Storytelling with Data](http://www.storytellingwithdata.com/books)
 - Slides are done with xaringan/xaringanthemer

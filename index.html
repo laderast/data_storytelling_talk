@@ -46,10 +46,10 @@ class: center, middle
 ---
 # Motivation: Exploratory versus Explanatory
 
-- **Exploratory analysis**: 
-    - exploring and understanding the data, conducting the analysis
-- **Explanatory analysis**: 
-    - explaining your findings from your analysis in a coherent narrative that leads to a call to action
+**Exploratory analysis**: 
+  - exploring and understanding the data, conducting the analysis
+**Explanatory analysis**: 
+  - explaining your findings from your analysis in a coherent narrative that leads to a call to action
 
 ---
 # You are not your audience
@@ -163,6 +163,8 @@ May be better than straight tables! Highlight differences using color.
 .pull-right[
 &lt;img src="img/heatmap.png" width="731" /&gt;
 ]
+
+.footnote[Storytelling with Data]
 ---
 # `geom_count()`
 
@@ -184,30 +186,18 @@ Focus on three techniques
 ---
 # Preattentive Attributes
 
+.pull-left[
 Ways to highlight properties of graphs even before people are even "paying attention", or consciously processing the graph:
 
 - color
-- contrast
+- contrast]
 
----
-# Let's summarize the data
+.pull-right[
+&lt;img src="img/threes.png" width="743" /&gt;
 
-Summarizing by race and cardiovascular disease
+]
 
-Using `group_by()/summarize()`:
-
-
-```r
-cvd_race_count &lt;- cvd_patient %&gt;% 
-  mutate(race=factor(race)) %&gt;% 
-* group_by(race, cvd) %&gt;% summarize(count=n())
-```
----
-# CVD Race Count
-
-<div id="htmlwidget-e00c11b859fe72aed91b" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-e00c11b859fe72aed91b">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8"],["AmInd","AmInd","Asian/PI","Asian/PI","Black/AfAm","Black/AfAm","White","White"],["N","Y","N","Y","N","Y","N","Y"],[127,43,4657,1732,1778,268,22004,4991]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>race<\/th>\n      <th>cvd<\/th>\n      <th>count<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":3},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
-
+.footnote[Storytelling with Data]
 ---
 # Context: Ways to highlight parts of a graph
 
@@ -232,8 +222,8 @@ fullset &lt;- cvd_patient %&gt;%
 
 There's a new column called `highlight`:
 
-<div id="htmlwidget-daec2fc930e0523d78b9" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-daec2fc930e0523d78b9">{"x":{"filter":"none","data":[["1","2","3","4"],["AmInd","Asian/PI","Black/AfAm","White"],[43,1732,268,4991],["N","N","Y","N"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>race<\/th>\n      <th>count<\/th>\n      <th>highlight<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":2},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-083fcf0e1bafbac55fb4" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-083fcf0e1bafbac55fb4">{"x":{"filter":"none","data":[["1","2","3","4"],["AmInd","Asian/PI","Black/AfAm","White"],[43,1732,268,4991],["N","N","Y","N"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>race<\/th>\n      <th>count<\/th>\n      <th>highlight<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":2},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 
 ---
 ## Highlighting the data
@@ -256,7 +246,7 @@ out_plot &lt;- ggplot(data=fullset, aes(x=race, y=count, fill=highlight)) +
 ---
 # Resulting Graph
 
-![](index_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
 
 ---
 # Reduce Clutter
@@ -277,6 +267,27 @@ Lots of prebuilt themes are really useful!
 https://ggplot2.tidyverse.org/reference/theme.html
 
 ---
+# Let's summarize the data
+
+Summarizing by race and cardiovascular disease
+
+Using `group_by()/summarize()`:
+
+
+```r
+cvd_race_count &lt;- cvd_patient %&gt;% 
+  mutate(race=factor(race)) %&gt;% 
+* group_by(race, cvd) %&gt;% summarize(count=n())
+```
+---
+# CVD Race Count
+
+<div id="htmlwidget-e93626cfbef96eecda38" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e93626cfbef96eecda38">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8"],["AmInd","AmInd","Asian/PI","Asian/PI","Black/AfAm","Black/AfAm","White","White"],["N","Y","N","Y","N","Y","N","Y"],[127,43,4657,1732,1778,268,22004,4991]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>race<\/th>\n      <th>cvd<\/th>\n      <th>count<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":3},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+
+
+
+---
 # Heatmap Example
 
 
@@ -291,7 +302,7 @@ heat_map &lt;- cvd_race_count %&gt;%
 ---
 # Resulting Plot
 
-![](index_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/unnamed-chunk-12-1.png)&lt;!-- --&gt;
 
 ---
 # Decluttering a heatmap using `theme()`
@@ -318,7 +329,7 @@ heat_map &lt;- cvd_race_count %&gt;%
 ---
 # Resulting Graph
 
-![](index_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/unnamed-chunk-14-1.png)&lt;!-- --&gt;
 
 ---
 # Context: Make your categories more understandable
@@ -327,19 +338,21 @@ Use of `case_when()` to recode categorical data:
 
 
 ```r
-recoded_data &lt;- cvd_patient %&gt;% 
+cvd_patient %&gt;% 
 * mutate(smoking = case_when(smoking == "Y" ~ "smoker",
 *                            smoking == "N" ~ "non-smoker")) %&gt;%
   mutate(cvd= case_when(cvd == "N" ~ "CVD",
                         cvd == "Y" ~ "None")) %&gt;%
   select(smoking, cvd) %&gt;%
   table()
-
-DT::datatable(recoded_data)
 ```
 
-<div id="htmlwidget-907d749347a80a98ddac" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-907d749347a80a98ddac">{"x":{"filter":"none","data":[["non-smoker","smoker","non-smoker","smoker"],["non-smoker","smoker","non-smoker","smoker"],["CVD","CVD","None","None"],[25653,2913,5620,1414]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>smoking<\/th>\n      <th>cvd<\/th>\n      <th>Freq<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,2]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+```
+##             cvd
+## smoking        CVD  None
+##   non-smoker 25653  5620
+##   smoker      2913  1414
+```
 
 ---
 # Context: Annotating a graph using `annotate`:
@@ -369,7 +382,7 @@ out_plot &lt;- lace_table %&gt;%
 ---
 # Resulting Plot
 
-![](index_files/figure-html/unnamed-chunk-16-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/unnamed-chunk-17-1.png)&lt;!-- --&gt;
 
 ---
 # Making things a little less cluttered
@@ -382,7 +395,8 @@ out_plot &lt;- lace_table %&gt;%
   filter(Readmit30 == 1) %&gt;%
   mutate(lace7 = ifelse(LACE &gt; 7, "Y", "N")) %&gt;% 
   ggplot(aes(y=as.factor(Admit_source), x=LACE, color=lace7)) + 
-  geom_count() + scale_color_manual(values=c("Y"="orange", "N"="grey")) +
+  geom_count() + 
+  scale_color_manual(values=c("Y"="orange", "N"="grey")) +
 * theme_minimal() +
 * geom_vline(xintercept=8, lty=3) +
 * theme(legend.position = "none", axis.title.y = element_blank())
@@ -391,7 +405,7 @@ out_plot &lt;- lace_table %&gt;%
 ---
 # Resulting Plot
 
-![](index_files/figure-html/unnamed-chunk-18-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/unnamed-chunk-19-1.png)&lt;!-- --&gt;
 
 ---
 # Adding Annotation
@@ -403,26 +417,24 @@ lace_table &lt;- read.delim("data/analytic-table-LACE.txt")
 out_plot &lt;- lace_table %&gt;% 
   filter(Readmit30 == 1) %&gt;%
   mutate(lace7 = ifelse(LACE &gt; 7, "Y", "N")) %&gt;% 
+
   ggplot(aes(y=as.factor(Admit_source), x=LACE, color=lace7)) + 
-  geom_count() + scale_color_manual(values=c("Y"="orange", "N"="grey")) +
-  theme_minimal() + 
+  geom_count() + 
+  scale_color_manual(values=c("Y"="orange", "N"="grey")) +
+* theme_minimal() +
+* theme(text =element_text(size=16)) +
   geom_vline(xintercept=8, lty=3) +
   theme(legend.position = "none", axis.title.y = element_blank()) +  
 * annotate("text",x = 5, y= 2.3, label="Low Risk") +
 * annotate("text", x=10, y=2.3, label = "High Risk" ) +
 * scale_size_area(max_size = 10) +
-  ggtitle("LACE Cutoff of 7 targets Emergency Room Readmits")
+  ggtitle("LACE Cutoff of 7 targets\n Emergency Room Readmits")
 ```
 
 ---
 # The Resulting Plot
 
-
-```r
-out_plot
-```
-
-![](index_files/figure-html/unnamed-chunk-20-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/unnamed-chunk-21-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -452,7 +464,7 @@ out_plot &lt;- cvd_race_count %&gt;%
 ---
 # The Plot
 
-![](index_files/figure-html/unnamed-chunk-22-1.png)&lt;!-- --&gt;
+![](index_files/figure-html/unnamed-chunk-23-1.png)&lt;!-- --&gt;
 
 ---
 # `ggplot2` flipbook
@@ -483,7 +495,8 @@ https://evamaerey.github.io/ggplot_flipbook/ggplot_flipbook_xaringan.html
 
 - Source for these slides: https://github.com/laderast/data_storytelling_talk
 - [Allison Sliter: Data Presentation for Everyone](https://ww2.amstat.org/meetings/sdss/2019/onlineprogram/AbstractDetails.cfm?AbstractID=306642)
-- [ggplot2 flipbook](https://evamaerey.github.io/ggplot_flipbook/ggplot_flipbook_xaringan.html)
+- [`ggplot2` flipbook](https://evamaerey.github.io/ggplot_flipbook/ggplot_flipbook_xaringan.html)
+- [Alison Hill: Take a Sad Plot and Make it Better](https://alison.rbind.io/talk/2018-ohsu-sad-plot-better/)
 - [Storytelling with Data](http://www.storytellingwithdata.com/books)
 - Slides are done with xaringan/xaringanthemer
     </textarea>
