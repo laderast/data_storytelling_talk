@@ -1,0 +1,55 @@
+---
+title: "Presentation Ninja"
+subtitle: "\u2694 <br/>with xaringan and xaringanthemer"  
+author: "Yihui Xie"
+date: '`r Sys.Date()`'
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: xaringan-themer.css
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+```{r xaringan-themer, include=FALSE}
+library(xaringanthemer)
+solarized_dark(
+  code_font_family = "Fira Code",
+  code_font_url    = "https://cdn.rawgit.com/tonsky/FiraCode/1.204/distr/fira_code.css"
+)
+```
+
+background-image: url(https://upload.wikimedia.org/wikipedia/commons/b/be/Sharingan_triple.svg)
+
+???
+
+Image credit: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Sharingan_triple.svg)
+
+---
+# Using color in a scatter plot
+
+```{r}
+lace_table <- read.delim("data/analytic-table-LACE.txt")
+out_plot <- lace_table %>% 
+  mutate(lace7 = ifelse(LengthOfStay > 4, "Y", "N")) %>% 
+  ggplot(aes(x=LScore, y=CScore, color=lace7)) + 
+  geom_count() + scale_color_manual(values=c("Y"="orange", "N"="grey")) +
+  theme_minimal() + geom_vline(xintercept=4, lty=3) +
+  theme(legend.position = "none") + 
+  scale_size_area(max_size = 10)
+```
+
+---
+# Resulting Plot
+
+```{r}
+out_plot
+```
+
+
