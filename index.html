@@ -21,6 +21,7 @@
 class: center, middle, inverse, title-slide
 
 # Data Storytelling
+## BMI 569 Data Analytics
 ### Ted Laderas
 ### 2019-08-22
 
@@ -134,11 +135,6 @@ class: center, middle
 
 Tables do require mental processing. It may be worth it to just use the number as the visual.
 
-
-```r
-knitr::include_graphics("img/number.png")
-```
-
 &lt;img src="img/number.png" width="755" /&gt;
 
 .footnote[Storytelling with Data]
@@ -146,27 +142,19 @@ knitr::include_graphics("img/number.png")
 ---
 # Barplots
 
-Stacked versus unstacked.
-
-
-```r
-knitr::include_graphics("img/barplots.png")
-```
-
 &lt;img src="img/barplots.png" width="600" /&gt;
 
 .footnote[Storytelling with Data]
 ---
 # Heatmaps
 
+.pull-left[
 May be better than straight tables! Highlight differences using color.
+]
 
-
-```r
-knitr::include_graphics("img/heatmap.png")
-```
-
+.pull-right[
 &lt;img src="img/heatmap.png" width="731" /&gt;
+]
 ---
 class: center, middle
 # Highlighting your message
@@ -204,8 +192,8 @@ cvd_race_count &lt;- cvd_patient %&gt;%
 ---
 # CVD Race Count
 
-<div id="htmlwidget-27a8dba133e02c95f293" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-27a8dba133e02c95f293">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8"],["AmInd","AmInd","Asian/PI","Asian/PI","Black/AfAm","Black/AfAm","White","White"],["N","Y","N","Y","N","Y","N","Y"],[127,43,4657,1732,1778,268,22004,4991]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>race<\/th>\n      <th>cvd<\/th>\n      <th>count<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":3},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-e84cb71fa933c17f6667" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e84cb71fa933c17f6667">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8"],["AmInd","AmInd","Asian/PI","Asian/PI","Black/AfAm","Black/AfAm","White","White"],["N","Y","N","Y","N","Y","N","Y"],[127,43,4657,1732,1778,268,22004,4991]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>race<\/th>\n      <th>cvd<\/th>\n      <th>count<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":3},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 
 ---
 # Context: Ways to highlight parts of a graph
@@ -231,8 +219,8 @@ fullset &lt;- cvd_patient %&gt;%
 
 There's a new column called `highlight`:
 
-<div id="htmlwidget-73d1f6ad7f1f191d7c3d" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-73d1f6ad7f1f191d7c3d">{"x":{"filter":"none","data":[["1","2","3","4"],["AmInd","Asian/PI","Black/AfAm","White"],[43,1732,268,4991],["N","N","Y","N"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>race<\/th>\n      <th>count<\/th>\n      <th>highlight<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":2},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-70e40c3cce2474d9d9f4" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-70e40c3cce2474d9d9f4">{"x":{"filter":"none","data":[["1","2","3","4"],["AmInd","Asian/PI","Black/AfAm","White"],[43,1732,268,4991],["N","N","Y","N"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>race<\/th>\n      <th>count<\/th>\n      <th>highlight<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":2},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 
 ---
 ## Highlighting the data
@@ -326,21 +314,19 @@ Use of `case_when()` to recode categorical data:
 
 
 ```r
-cvd_patient %&gt;% 
+recoded_data &lt;- cvd_patient %&gt;% 
 * mutate(smoking = case_when(smoking == "Y" ~ "smoker",
 *                            smoking == "N" ~ "non-smoker")) %&gt;%
   mutate(cvd= case_when(cvd == "N" ~ "CVD",
                         cvd == "Y" ~ "None")) %&gt;%
   select(smoking, cvd) %&gt;%
   table()
+
+DT::datatable(recoded_data)
 ```
 
-```
-##             cvd
-## smoking        CVD  None
-##   non-smoker 25653  5620
-##   smoker      2913  1414
-```
+<div id="htmlwidget-d74284ddceeb9a9b9c17" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d74284ddceeb9a9b9c17">{"x":{"filter":"none","data":[["non-smoker","smoker","non-smoker","smoker"],["non-smoker","smoker","non-smoker","smoker"],["CVD","CVD","None","None"],[25653,2913,5620,1414]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>smoking<\/th>\n      <th>cvd<\/th>\n      <th>Freq<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,2]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 
 ---
 # Context: Annotating a graph using `annotate`:
@@ -361,6 +347,7 @@ Think of a title for this plot!
 lace_table &lt;- read.delim("data/analytic-table-LACE.txt")
 
 out_plot &lt;- lace_table %&gt;% 
+  filter(Readmit30 == 1) %&gt;%
 * mutate(lace7 = ifelse(LACE &gt; 7, "Y", "N")) %&gt;%
   ggplot(aes(y=as.factor(Admit_source), x=LACE, color=lace7)) +
   geom_count() + 
@@ -379,6 +366,7 @@ out_plot &lt;- lace_table %&gt;%
 lace_table &lt;- read.delim("data/analytic-table-LACE.txt")
 
 out_plot &lt;- lace_table %&gt;% 
+  filter(Readmit30 == 1) %&gt;%
   mutate(lace7 = ifelse(LACE &gt; 7, "Y", "N")) %&gt;% 
   ggplot(aes(y=as.factor(Admit_source), x=LACE, color=lace7)) + 
   geom_count() + scale_color_manual(values=c("Y"="orange", "N"="grey")) +

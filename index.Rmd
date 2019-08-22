@@ -1,5 +1,6 @@
 ---
 title: "Data Storytelling"
+subtitle: "BMI 569 Data Analytics"
 author: "Ted Laderas"
 date: " `r Sys.Date()`"
 output:
@@ -134,7 +135,7 @@ class: center, middle
 
 Tables do require mental processing. It may be worth it to just use the number as the visual.
 
-```{r}
+```{r echo=FALSE}
 knitr::include_graphics("img/number.png")
 ```
 
@@ -143,9 +144,7 @@ knitr::include_graphics("img/number.png")
 ---
 # Barplots
 
-Stacked versus unstacked.
-
-```{r}
+```{r echo=FALSE}
 knitr::include_graphics("img/barplots.png")
 ```
 
@@ -153,11 +152,15 @@ knitr::include_graphics("img/barplots.png")
 ---
 # Heatmaps
 
+.pull-left[
 May be better than straight tables! Highlight differences using color.
+]
 
-```{r}
+.pull-right[
+```{r echo=FALSE}
 knitr::include_graphics("img/heatmap.png")
 ```
+]
 ---
 class: center, middle
 # Highlighting your message
