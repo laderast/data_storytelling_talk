@@ -9,26 +9,25 @@ output:
     css: xaringan-themer.css
     nature:
       ratio: '16:9'
-      highlightStyle: github
-      highlightLines: true
       countIncrementalSlides: false
 ---
 
 ```{r setup, include=FALSE}
-options(htmltools.dir.version = FALSE)
 library(here)
 library(readr)
 library(tidyverse)
-cvd_patient <- readr::read_csv(here("data/cvd_patient.csv"))
+library(here)
 ```
 
 ```{r xaringan-themer, include = FALSE}
 library(xaringanthemer)
 mono_light(
-  base_color = "#1c5253",
+    base_color = "midnightblue",
   header_font_google = google_font("Josefin Sans"),
   text_font_google   = google_font("Montserrat", "300", "300i"),
-  code_font_google   = google_font("Droid Mono")
+  code_font_google   = google_font("Droid Mono"),
+  link_color = "deepskyblue1",
+  text_font_size = "28px"
 )
 ```
 
@@ -62,17 +61,7 @@ class: center, middle
 - Adjust your metrics
 
 ---
-# Use Plain Language (Allison Sliter)
 
-| Instead of...                | Try...                                                                                         |
-|---------------------------|---------------------------------------------------------------------------------------------|
-| Statistically Significant | "If we did this experiment again, it  would be unlikely to come up with a different result" |
-| Null Result               | "We haven't gotten enough data to answer your question. More data may help."                |
-| Confidence Interval       | "We're Pretty sure the true answer is between this and that."                               |
-| p-value                   | Maybe skip talking about p-values at all?                                                   |
-
-.footnote[https://www.plainlanguage.gov/]
----
 class: center, middle
 # Know Your Audience and Build Your Story
 
@@ -106,19 +95,9 @@ class: center, middle
   - What would it take to bring the project to the larger organization?
 
 ---
-
-# Storyboarding Activity (15 Minutes)
-
-You are part of a team that has done a pilot implementation of LACE in order to assess the viability. You are presenting to your sponsors in your organization about rolling out LACE to the entire organization.
-
-Activity: Thinking about the sponsor of your analytic effort:
-
-1. What is your call to action? (What are you asking for?)
-1. What were your findings on the pilot? 
-1. How will you connect them?
-
----
 # What data do you need to tell your story?
+
+Your call to action drives this!
 
 - What datasets/tables/metrics?
 - What numbers are meaningful?
@@ -146,7 +125,7 @@ Tables do require mental processing. It may be worth it to just use the number a
 
 .pull-right[
 ```{r echo=FALSE}
-knitr::include_graphics("img/number.png")
+knitr::include_graphics("image/number.png")
 ```
 ]
 
@@ -155,12 +134,16 @@ knitr::include_graphics("img/number.png")
 ---
 # Barplots
 
-.pull-right[
-```{r echo=FALSE}
-knitr::include_graphics("img/barplots.png")
-```
+.pull-left[
+- Sometimes simpler is better
+- Can highlight changes
 ]
 
+.pull-right[
+```{r echo=FALSE}
+knitr::include_graphics("image/barplots.png", height=450)
+```
+]
 .footnote[Storytelling with Data]
 ---
 # Heatmaps
@@ -171,16 +154,11 @@ May be better than straight tables! Highlight differences using color.
 
 .pull-right[
 ```{r echo=FALSE}
-knitr::include_graphics("img/heatmap.png")
+knitr::include_graphics("image/heatmap.png")
 ```
 ]
 
 .footnote[Storytelling with Data]
----
-# `geom_count()`
-
-We'll look at an example a little later.
-
 ---
 class: center, middle
 # Highlighting your message
@@ -190,301 +168,156 @@ class: center, middle
 
 Focus on three techniques
 
-- Preattentive Attributes
-- Decluttering your plot using `theme()`
+- Decluttering your graph
 - Annotating your graph
+- Highlighting Data using Preattentive Attributes (color)
 
 ---
-# Preattentive Attributes
+class: center, middle
+# Part 1: Declutter your graph
+
+---
+# Why do we need to declutter our graphs?
+
+- Reduce cognitive load (help tired and cranky viewers)
+- Viewer can focus on what matters
+- Not all information is useful for your viewer
+
+---
+# Example: London Subway Diagram
 
 .pull-left[
-Ways to highlight properties of graphs even before people are even "paying attention", or consciously processing the graph:
+```{r echo = FALSE}
+knitr::include_graphics("image/london-underground.jpg")
+```
+]
 
-- color
-- contrast]
+.pull-right[
+- Triumph of minimal design
+- Removes geography
+- Emphasizes: what lines to I take to get from A to B?
+]
+
+.footnote[http://theconversation.com/sublime-design-the-london-underground-map-26240]
+
+---
+# Cognitive Load
+
+- Think of your audience: 
+    - Tired and cranky and want you to get to the point!
+    - Short term memory 5 +/- 2 things at once
+- Remove elements that distract from your message
+    - Shadows, 3D Effects
+    - Legends/too many colors 
+    - Axis Titles (sometimes)
+
+---
+# Ask Yourself
+
+- Does this element support [the point I want to make about the data?](http://www.storytellingwithdata.com/blog/2017/3/29/declutter-this-graph)
+
+```{r echo=FALSE}
+knitr::include_graphics("image/before-after.png")
+```
+
+---
+class: center, middle
+# Part 2: Annotating Your Graphs
+
+---
+# Guiding Your Viewer 
+
+Another way we can guide people through our visualization is by using **annotations**, which can be very helpful in guiding someone through our figure. Let's review some best practices.
+
+---
+# Use your titles/captions!
+
+- Titles can guide people to the point of your figure
+- Primes people to know what to look for
+- "If there is a conclusion you want your audience to reach, state it in words" - Cole Nussbaum Knaflic
+---
+# Don't label everything
+
+.pull-left[- Think about only labeling the data that matters
+- If you want someone to compare two shows, label them
+- Think about groupings and "super categories" to help your viewers make sense of the graph]
 
 .pull-right[
 ```{r echo=FALSE}
-knitr::include_graphics("img/threes.png")
+knitr::include_graphics("image/super-category.png")
+```
+]
+---
+class: center, middle
+```{r echo=FALSE, fig.height=5}
+knitr::include_graphics("image/Colin.png")
 ```
 
+https://datawoj.co.uk/visualising-data-on-which-social-media-network-us-teenagers-prefer/
+
+---
+class: center, middle
+# Part 4: Highlighting Data 
+
+---
+# Preattentive attributes
+
+.pull-left[
+Color and contrast are known as `preattentive attributes`. Our unconscious brain is aware of these kinds of attributes even before we consciously process the content of a graph.
+
+How many 3s are there in this image?
 ]
 
-.footnote[Storytelling with Data]
----
-# Highlighting data
-
-We've counted the number of cases in the `cvd_patient` dataset by `race`.
-
-We want to highlight the counts of African Americans in our cohort.
----
-# Context: Ways to highlight parts of a graph
-
-`scale_fill_manual()` is your friend with categorical data. Map your categories to colors manually, only highlight the categories you want to emphasize.
-
-First add a column called `highlight` that emphasizes the group of interest. 
-
-```{r}
-fullset <- cvd_patient %>% 
-  filter(cvd == "Y") %>%
-  mutate(race=factor(race)) %>% 
-  #count number of patients in each race category
-  group_by(race) %>% summarize(count=n()) %>%
-  #reorder race variable by the count in the category
-  mutate(race=fct_reorder(race, count)) %>%
-  mutate(highlight = #<<
-           ifelse(race == "Black/AfAm", "Y", "N")) #<<
-```
----
-## Highlight Column
-
-There's a new column called `highlight`:
-
+.pull-right[
 ```{r echo=FALSE}
-DT::datatable(fullset)
+knitr::include_graphics("image/threes-grey.png")
 ```
+]
 
+.footnote[[Storytelling with Data](http://storytellingwithdata.com/)]
 ---
-## Highlighting the data
+# How about now?
 
-```{r}
-out_plot <- ggplot(data=fullset, aes(x=race, y=count, fill=highlight)) + 
-  geom_col() + 
-  geom_text(aes(label=race, y=count+300)) +
-  
-  # Use the highlight variable with scale_fill_manual
-  scale_fill_manual(values = c("Y"="blue", "N"="grey")) + #<<
-  
-  # Remove legend and x-axis information
-  theme(legend.position = "none", #<<
-        axis.text.x = element_blank()) + #<< 
-    ggtitle("African Americans are 3rd in Number of\n Cardiovascular Cases for our cohort") #<<
+.pull-left[
+You can use color and contrast to highlight aspects of the data. How many 3s are there in this image now? Notice how much quicker you can count them. 
 
-```
+That's the power of preattentive attributes!
+]
 
----
-# Resulting Graph
-
+.pull-right[
 ```{r echo=FALSE}
-out_plot
+knitr::include_graphics("image/threes.png")
 ```
+]
+
+.footnote[[Storytelling with Data](http://storytellingwithdata.com/)]
+---
+# Best Practices for Using Color (Stephen Few)
+
+- Use color only when needed to serve a particular communication goal
+- Use different colors only when they correspond to differences of meaning in the data.
+- Use soft, natural colors to display most information and bright and/or dark colors to highlight information that requires greater attention.
+
+.footnote[[Practical Rules for Using Color](http://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf)]
 
 ---
-# Reduce Clutter
+# Conclusions
 
-Reduce the cognitive load it takes to process a graph!
-
-Show only what you need to show.
-
-Use `theme()` and `element_blank()` to remove different parts of the graph.
+Congrats! You're well on your way to learning how to make your figures more accessible.
 
 ---
-# The power of `theme()`
-
-Lots of prebuilt themes are really useful!
-
-- `theme_minimal()`
-
-https://ggplot2.tidyverse.org/reference/theme.html
+class: center, middle
+# Putting it all Together
 
 ---
-# Let's summarize the data
-
-Summarizing by race and cardiovascular disease
-
-Using `group_by()/summarize()`:
-
-```{r}
-cvd_race_count <- cvd_patient %>% 
-  mutate(race=factor(race)) %>% 
-  group_by(race, cvd) %>% summarize(count=n()) #<<
-```
----
-# CVD Race Count
-
 ```{r echo=FALSE}
-DT::datatable(cvd_race_count)
+knitr::include_graphics("image/David_H.png")
 ```
-
-
-
+.footnote[https://t.co/KSGQzaH0Mh]
 ---
-# Heatmap Example
+class: center, middle
 
-```{r}
-heat_map <- cvd_race_count %>% 
-  ggplot(aes(x=cvd, y=race, fill=count)) + 
-  geom_tile(color="black") +
-  scale_fill_gradient(low="white", high="lightblue") + 
-  geom_text(aes(label=count))
-```
-
----
-# Resulting Plot
-
-```{r echo=FALSE}
-heat_map
-```
-
----
-# Decluttering a heatmap using `theme()`
-
-If you want to remove an element, use `element_blank()`. Here we're also removing the legend with `legend.position = none`, and using `theme_minimal()` to remove some extraneous elements, and resizing the text.
-
-```{r}
-heat_map <- cvd_race_count %>% 
-  ggplot(aes(x=cvd, y=race, fill=count)) + 
-  geom_tile(color="black") +
-  scale_fill_gradient(low="white", high="lightblue") + 
-  geom_text(aes(label=count), size=10) + #<< 
-  theme_minimal() + #<<
-  #remove clutter
-  theme(legend.position = "none", #<<
-        text = element_text(size=20), #<<
-        #remove the x and y axis titles by making them blank
-        axis.title.x = element_blank(), #<<
-        axis.title.y = element_blank(), #<<
-        )
-```
-
----
-# Resulting Graph
-
-```{r echo=FALSE}
-heat_map
-```
-
----
-# Context: Make your categories more understandable
-
-Use of `case_when()` to recode categorical data:
-
-```{r}
-cvd_patient %>% 
-  mutate(smoking = case_when(smoking == "Y" ~ "smoker", #<<
-                             smoking == "N" ~ "non-smoker")) %>% #<<
-  mutate(cvd= case_when(cvd == "N" ~ "CVD",
-                        cvd == "Y" ~ "None")) %>%
-  select(smoking, cvd) %>%
-  table()
-```
-
----
-# Context: Annotating a graph using `annotate`:
-
-`annotate()` can be extremely powerful in highlighting portions of a plot.
-
-We'll look at an example next.
-
----
-# Full Example: Using Color to Highlight LACE Scores
-
-Showing the distribution of LACE Scores by Admit Source for our cases.
-
-Think of a title for this plot!
-
-```{r}
-lace_table <- read.delim("data/analytic-table-LACE.txt")
-
-out_plot <- lace_table %>% 
-  filter(Readmit30 == 1) %>%
-  mutate(lace7 = ifelse(LACE > 7, "Y", "N")) %>% #<<
-  ggplot(aes(y=as.factor(Admit_source), x=LACE, color=lace7)) +
-  geom_count() + 
-  scale_color_manual(values=c("Y"="orange", "N"="grey")) #<<
-```
----
-# Resulting Plot
-
-```{r echo=FALSE}
-out_plot
-```
-
----
-# Making things a little less cluttered
-
-```{r}
-lace_table <- read.delim("data/analytic-table-LACE.txt")
-
-out_plot <- lace_table %>% 
-  filter(Readmit30 == 1) %>%
-  mutate(lace7 = ifelse(LACE > 7, "Y", "N")) %>% 
-  ggplot(aes(y=as.factor(Admit_source), x=LACE, color=lace7)) + 
-  geom_count() + 
-  scale_color_manual(values=c("Y"="orange", "N"="grey")) +
-  theme_minimal() + #<<
-  geom_vline(xintercept=8, lty=3) + #<<
-  theme(legend.position = "none", axis.title.y = element_blank()) #<<
-```
-
----
-# Resulting Plot
-
-```{r echo=FALSE}
-out_plot
-```
-
----
-# Adding Annotation
-
-```{r}
-lace_table <- read.delim("data/analytic-table-LACE.txt")
-
-out_plot <- lace_table %>% 
-  filter(Readmit30 == 1) %>%
-  mutate(lace7 = ifelse(LACE > 7, "Y", "N")) %>% 
-
-  ggplot(aes(y=as.factor(Admit_source), x=LACE, color=lace7)) + 
-  geom_count() + 
-  scale_color_manual(values=c("Y"="orange", "N"="grey")) +
-  theme_minimal() + #<<
-  theme(text =element_text(size=16)) + #<<
-  geom_vline(xintercept=8, lty=3) +
-  theme(legend.position = "none", axis.title.y = element_blank()) +  
-  annotate("text",x = 5, y= 2.3, label="Low Risk") + #<<
-  annotate("text", x=10, y=2.3, label = "High Risk" ) + #<<
-  scale_size_area(max_size = 10) + #<<
-  ggtitle("LACE Cutoff of 7 targets\n Emergency Room Readmits")
-```
-
----
-# The Resulting Plot
-
-```{r echo=FALSE}
-out_plot
-```
-
----
-
-# Another example: Proportional Barplot 
-
----
-# Context: Subsetting using filter
-
-Think about focusing on your subgroup, or groups to compare.
-
-```{r}
-out_plot <- cvd_race_count %>% 
-  #using filter to subset the data
-  filter(race=="Black/AfAm" | race == "White") %>% #<<
-  ggplot(aes(x=race, y=count, fill=cvd)) + 
-  geom_bar(stat="identity", position = "fill", color="black") + 
-  theme_minimal() + 
-  #map Y and N to colors using scale_fill_manual
-  scale_fill_manual(values=c("N"= "grey", "Y"="blue")) +
-  #remove legend
-  theme(legend.position="none") +
-  #add an appropriate title
-  ggtitle("White males have a higher prevalence of CVD than Black Males")
-```
-
----
-# The Plot
-
-```{r echo=FALSE}
-out_plot
-```
-
+# Going Farther
 ---
 # `ggplot2` flipbook
 
@@ -495,12 +328,6 @@ https://evamaerey.github.io/ggplot_flipbook/ggplot_flipbook_xaringan.html
 - [Arctic Ice](https://evamaerey.github.io/ggplot_flipbook/ggplot_flipbook_xaringan.html#226)
 - [Flipping Seats](https://evamaerey.github.io/ggplot_flipbook/ggplot_flipbook_xaringan.html#302)
 - [Milk Cows](https://evamaerey.github.io/ggplot_flipbook/ggplot_flipbook_xaringan.html#354)
-
----
-# For Much More Info
-
-- Data Visualization Course
-
 ---
 # Recap
 
