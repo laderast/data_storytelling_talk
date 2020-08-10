@@ -141,7 +141,7 @@ knitr::include_graphics("image/number.png")
 
 .pull-right[
 ```{r echo=FALSE}
-knitr::include_graphics("image/barplots.png", height=450)
+knitr::include_graphics("image/barplots.png")
 ```
 ]
 .footnote[Storytelling with Data]
