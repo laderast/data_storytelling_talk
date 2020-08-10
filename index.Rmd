@@ -243,17 +243,12 @@ Another way we can guide people through our visualization is by using **annotati
 - Think about groupings and "super categories" to help your viewers make sense of the graph]
 
 .pull-right[
-```{r echo=FALSE}
-knitr::include_graphics("image/super-category.png")
-```
+<img src="image/super-category.png" width=800>
 ]
 ---
-class: center, middle
-```{r echo=FALSE, fig.height=5}
-knitr::include_graphics("image/Colin.png")
-```
+<img src="image/colin.png" height=450>
 
-https://datawoj.co.uk/visualising-data-on-which-social-media-network-us-teenagers-prefer/
+.footnote[https://datawoj.co.uk/visualising-data-on-which-social-media-network-us-teenagers-prefer/]
 
 ---
 class: center, middle
@@ -301,6 +296,12 @@ knitr::include_graphics("image/threes.png")
 .footnote[[Practical Rules for Using Color](http://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf)]
 
 ---
+<img src="image/colin.png" height=450>
+
+.footnote[
+https://datawoj.co.uk/visualising-data-on-which-social-media-network-us-teenagers-prefer/
+]
+---
 # Conclusions
 
 Congrats! You're well on your way to learning how to make your figures more accessible.
@@ -340,6 +341,7 @@ https://evamaerey.github.io/ggplot_flipbook/ggplot_flipbook_xaringan.html
 # References
 
 - Source for these slides: https://github.com/laderast/data_storytelling_talk
+- [Storytelling with Data RStudio Project (Optional)](https://rstudio.cloud/project/1192661)
 - [Allison Sliter: Data Presentation for Everyone](https://ww2.amstat.org/meetings/sdss/2019/onlineprogram/AbstractDetails.cfm?AbstractID=306642)
 - [`ggplot2` flipbook](https://evamaerey.github.io/ggplot_flipbook/ggplot_flipbook_xaringan.html)
 - [Alison Hill: Take a Sad Plot and Make it Better](https://alison.rbind.io/talk/2018-ohsu-sad-plot-better/)
