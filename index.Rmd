@@ -246,7 +246,7 @@ Another way we can guide people through our visualization is by using **annotati
 <img src="image/super-category.png" width=800>
 ]
 ---
-<img src="image/colin.png" height=450>
+<img src="image/Colin.png" height=450>
 
 .footnote[https://datawoj.co.uk/visualising-data-on-which-social-media-network-us-teenagers-prefer/]
 
@@ -296,7 +296,7 @@ knitr::include_graphics("image/threes.png")
 .footnote[[Practical Rules for Using Color](http://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf)]
 
 ---
-<img src="image/colin.png" height=450>
+<img src="image/Colin.png" height=450>
 
 .footnote[
 https://datawoj.co.uk/visualising-data-on-which-social-media-network-us-teenagers-prefer/
